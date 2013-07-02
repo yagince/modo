@@ -15,13 +15,27 @@ sub startup {
   my $logged_in = $r->under(
       sub {
           my $self = shift;
-          return $self->session('user') || !$self->redirect_to('login_index');
+          return $self->session('user') || !$self->redirect_to('login');
       }
   );
   $logged_in->get('/')->to('example#welcome')->name('index');
-  $r->get('/login-index')->to('login#index')->name('login_index');
-  $r->post('/login')->to('login#login');
-  $r->delete('/logout')->to('login#logout');
+  $r->get('/login')->to('login#index')->name('login');
+  $r->post('/login')->to('login#login')->name('login_post');
+  $r->delete('/logout')->to('login#logout')->name('logout');
+
+  $self->hook(
+      before_dispatch => sub {
+          my $c = shift;
+          my $_method = $c->req->param('_method');
+          if($c->req->method eq 'POST' && $_method) {
+              my $methods = [qw/GET POST PUT DELETE/];
+              if ( grep { $_ eq uc $_method } @$methods ) {
+                  $c->req->method( $_method );
+              }
+          }
+      }
+  );
+
 }
 
 1;

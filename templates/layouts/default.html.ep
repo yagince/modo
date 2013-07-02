@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head><title><%= title %></title></head>
-  <body><%= content %></body>
+  <body>
+    <div id="header">
+      <form action="<%= url_for('logout') %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE"/>
+        <button type="submit">ログアウト</button>
+      </form>
+    </div>
+    <div id="contents"><%= content %></div>
+    <div id="header"></div>
+  </body>
 </html>

@@ -1,8 +1,8 @@
 use Test::More;
 use DateTime;
-use MoDo::Model::ToDo;
+use MoDo::Model::Todo;
 
-my $todo = MoDo::Model::ToDo->new(title => "hoge", created_at => DateTime->now);
+my $todo = MoDo::Model::Todo->new(title => "hoge", created_at => DateTime->now);
 is($todo->id, -1);
 
 done_testing();

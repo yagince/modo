@@ -1,24 +1,12 @@
 package MoDo::Model;
-use Mouse;
-use Plack::Util;
+use strict;
+use warnings;
 
-has 'instances' => (
-    traits => ['Hash'],
-    is     => 'rw',
-    isa    => 'HashRef',
-    default=> sub { +{} },
-    handles => {
-        set_instance => 'set'
-    },
-);
+use DBIx::Skinny connect_info => +{
+    dsn => 'dbi:mysql:modo',
+    username => 'root',
+    password => 'password',
+};
 
-sub load {
-    my ($self, $name) = @_;
-    my $instance = $self->instances->{$name};
-    return $instance if $instance;
+1;
 
-    my $class = Plack::Util::load_class($name, "Modo::Model");
-    $instance = $class->new;
-    $self->set_instance($name, $instance);
-    return $instance;
-}

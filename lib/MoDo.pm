@@ -17,7 +17,8 @@ sub startup {
           return $self->session('user') || !$self->redirect_to('login');
       }
   );
-  $logged_in->get('/')->to('example#welcome')->name('index');
+  # $logged_in->get('/')->to('example#welcome')->name('index');
+  $logged_in->get('/')->to('todo#index')->name('index');
   $r->get('/login')->to('login#index')->name('login');
   $r->post('/login')->to('login#login')->name('login_post');
   $r->delete('/logout')->to('login#logout')->name('logout');
@@ -42,6 +43,8 @@ sub startup {
       }
   );
 
+  use MoDo::Model;
+  $self->attr( db => sub{ MoDo::Model->new } );
 }
 
 1;

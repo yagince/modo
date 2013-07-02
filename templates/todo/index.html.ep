@@ -1,0 +1,17 @@
+% layout 'default';
+% title 'Login';
+
+<ul>
+  <li>
+    ID : 
+    %= $todo->id
+  </li>
+  <li>
+    TITLE : 
+    %= $todo->title
+  </li>
+  <li>
+    CREATED_AT : 
+    %= $todo->created_at
+  </li>
+</ul>

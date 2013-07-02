@@ -3,7 +3,7 @@ use FindBin;
 use lib "$FindBin::Bin/lib";
 use Mojo::Server::PSGI;
 use Plack::Builder;
-use MoDo;;
+use MoDo;
 
 my $psgi = Mojo::Server::PSGI->new(app => MoDo->new);
 

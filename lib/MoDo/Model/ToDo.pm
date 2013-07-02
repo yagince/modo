@@ -1,4 +1,4 @@
-package ToDo;
+package MoDo::Model::ToDo;
 use Mouse;
 
 has 'id' => (
@@ -19,3 +19,5 @@ has 'created_at' => (
     isa => "DateTime",
     required => 1,
 );
+
+1;

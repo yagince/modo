@@ -11,7 +11,6 @@ sub startup {
   # Router
   my $r = $self->routes;
 
-  # Normal route to controller
   my $logged_in = $r->under(
       sub {
           my $self = shift;
@@ -33,6 +32,13 @@ sub startup {
                   $c->req->method( $_method );
               }
           }
+      }
+  );
+
+  $self->helper(
+      model => sub {
+          my ($self, $name) = @_;
+          Modo::Model->new->load($name);
       }
   );
 

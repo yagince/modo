@@ -36,13 +36,6 @@ sub startup {
       }
   );
 
-  $self->helper(
-      model => sub {
-          my ($self, $name) = @_;
-          Modo::Model->new->load($name);
-      }
-  );
-
   use MoDo::Model;
   $self->attr( db => sub{ MoDo::Model->new } );
 }

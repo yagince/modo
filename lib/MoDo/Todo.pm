@@ -4,10 +4,8 @@ use MoDo::Model::Todo;
 
 sub index {
     my $self = shift;
-    print "================  Todo\n";
-    my $todo = MoDo::Model::Todo->find( { id => 1 } );
-    $self->stash( todo => $todo );
-    print $todo;
+    my @todos = MoDo::Model::Todo->all;
+    $self->stash( todos => \@todos );
 }
 
 1;

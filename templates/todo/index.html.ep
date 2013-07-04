@@ -1,19 +1,16 @@
 % layout 'default';
-% title 'Login';
+% title 'ToDo Page';
 
-<ul>
-  % foreach my $todo (reverse @$todos) {
-  <li>
-    ID : 
+<h2>All ToDo List</h2>
+% foreach my $todo (reverse @$todos) {
+<div class="hero-unit">
+  <h3>
     %= $todo->id
-  </li>
-  <li>
-    TITLE : 
+    :
     %= $todo->title
-  </li>
-  <li>
-    CREATED_AT : 
+  </h3>
+  <p>
     %= $todo->created_at
-  </li>
-  % }
-</ul>
+  </p>
+</div>
+% }

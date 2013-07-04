@@ -1,9 +1,32 @@
-% layout 'default';
-% title 'Login';
-
-<h2>Please Login...!</h2>
-<form action="<%= url_for('login_post') %>" method="POST">
-  <label for="user-id">ID:</label><input type="text" id="user-id" name="id"/><br>
-  <label for="pass">PASS:</label><input type="password" id="pass" name="pass"/><br>
-  <button type="submit">login</button>
-</form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    %= stylesheet '/css/bootstrap.min.css'
+    %= stylesheet begin
+      body {
+        padding-top: 40px;
+        padding-bottom: 40px;
+        background-color: #f5f5f5;
+      }
+      .form-container {
+        padding: 20px 30px 30px;
+        max-width: 300px;
+        margin: 0 auto 20px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+      }
+    % end
+    %= javascript '/js/bootstrap.min.js'
+  </head>
+  <body>
+    <div class="container">
+      %= form_for login_post => (method => 'post', class => 'form-container') => begin
+        <h2>Please Login...!</h2>
+        %= text_field 'id', id => 'user-id', placeholder => 'UserID'
+        %= password_field 'pass', id => 'pass', placeholder => 'Password'
+        <br><button type="submit" class="btn btn-primary">login</button>
+      % end
+    </div>
+  </body>
+</html>
